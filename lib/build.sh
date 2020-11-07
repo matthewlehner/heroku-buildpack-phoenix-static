@@ -125,7 +125,9 @@ install_and_cache_deps() {
 
   info "Installing node modules"
   if [ -f "$assets_dir/yarn.lock" ]; then
-    install_yarn_deps
+    if [ ! -f "$assets_dir/.pnp.js" ]; then
+      install_yarn_deps
+    fi
   else
     install_npm_deps
   fi
